@@ -15,10 +15,10 @@ package AutoboxingAndUnboxing;
  */
 public class AutoboxingAndUnboxing {
     public static void main(String[] args) {
-        // 自动装箱指的是编译器在合适的时候自动将基本类型通过 valueOf() 将基本类型转换成对应的包装类
+        // 自动装箱指的是编译器在合适的时候自动将基本类型通过 valueOf() 转换成对应的包装类
         Integer i1 = 666;
 
-        // 自动拆箱指的是编译器在合适的时候自动将基本类型通过 xxxValue() 将包装类转换成其对应的基本类型
+        // 自动拆箱指的是编译器在合适的时候自动将包装类型通过 xxxValue() 转换成其对应的基本类型
         int liu1 = i1;
 
         // 上面两句代码等同于执行了
@@ -140,20 +140,20 @@ public class AutoboxingAndUnboxing {
         Long h = 2L;
 
         // == 两边都是包装类时比较的是地址
-        System.out.println(c==d);
-        System.out.println(e==f);
+        System.out.println(c == d);
+        System.out.println(e == f);
         // == 两边一个是对象，一个是基本类型，对象会自动拆箱
         // a+b 先各自拆箱为int值, 左边c也自动拆箱比较大小
-        System.out.println(c==(a+b));
+        System.out.println(c == (a + b));
         // a+b 先拆箱，得到计算结果再装箱
-        System.out.println(c.equals(a+b));
+        System.out.println(c.equals(a + b));
         // 只要 == 两边不都是对象，要调用valueOf拆箱, 比较值大小, g的值为3L, a+b的值为3
-        System.out.println(g==(a+b));
+        System.out.println(g == (a + b));
         // 重写的equals方法是先判断类型是否相等 obj instanceof Long
         // g的类型为Long, a+b的结果装箱后是Integer
-        System.out.println(g.equals(a+b));
+        System.out.println(g.equals(a + b));
         // a和h分别调用的是intValue和longValue，int类型隐式转换为long, 最后的结果有自动装箱为Long
-        System.out.println(g.equals(a+h));
+        System.out.println(g.equals(a + h));
 //        true
 //        false
 //        true
