@@ -12,6 +12,8 @@ package Java8Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.MonthDay;
 import java.time.temporal.*;
 import java.util.Calendar;
@@ -24,6 +26,20 @@ import java.util.GregorianCalendar;
  */
 public class Java8Date {
     public static void main(String[] args) {
+        /*
+         * Java8 在time包中提供了一系列和日期时间相关的包来取代以前的那几个类的原因:
+         * 1. 线程不安全，新的time包中的时间日期类都是immutable的
+         * 2. 使用不够方便，API太分散，接口不够统一
+         */
+
+//        beforeJava8();
+//        testLocalDate();
+//        testMonthDay();
+//        testLocalTime();
+        testLocalDateTime();
+    }
+
+    private static void beforeJava8() {
         // jdk8 以前我们是怎样处理时间日期的呢?
         // 当前时间戳
         System.out.println(System.currentTimeMillis()); // 1546486077155
@@ -40,15 +56,6 @@ public class Java8Date {
         Date d1 = new Date(1);
         // 比较时间先后
         System.out.println(d1.after(d));
-
-        /*
-         * Java8 在time包中提供了一系列和日期时间相关的包来取代以前的那几个类的原因:
-         * 1. 线程不安全，新的time包中的时间日期类都是immutable的
-         * 2. 使用不够方便，API太分散，接口不够统一
-         */
-
-//        testLocalDate();
-        testMonthDay();
     }
 
     private static void testLocalDate() {
@@ -93,7 +100,7 @@ public class Java8Date {
         System.out.println(ld.plusDays(3)); // 1998-01-30
         System.out.println(ld.plusMonths(1)); // 1998-02-27, 看得出来是没有改变原本LocalDate对象
         System.out.println(ld.minusMonths(1)); // 1997-12-27
-        // 超过月中最大日就去月中最大日
+        // 超过月中最大日就取月中最大日
         System.out.println(ld.plusDays(4).plusMonths(1)); // 1998-02-28
 
         // 另一种修改日期的方式，通过withXxxx函数修改年月日
@@ -117,9 +124,46 @@ public class Java8Date {
         md = MonthDay.parse("--09-28");
         System.out.println("Dsy's borthday is: " + md.toString().replace("-", " "));
         // => Dsy's borthday is:   09 28
+        System.out.println(MonthDay.from(LocalDate.of(1998, 1, 27)));
+//        System.out.println(LocalDate.from(md));
+//        java.time.DateTimeException: Unable to obtain LocalDate from TemporalAccessor: --09-28 of type java.time.MonthDay
 
+        // 判断今天是不是我生日
+        System.out.println(MonthDay.now().equals(MonthDay.of(1, 27))); // false
+    }
 
+    private static void testLocalTime() {
+        LocalTime lt = LocalTime.of(20, 6, 6);
+        System.out.println(lt); // => 20:06:06
+        System.out.println(LocalTime.parse("00:00")); // 00:00
 
+        System.out.println(lt.getHour());
+        System.out.println(lt.getMinute());
+        System.out.println(lt.getSecond());
+        // 纳秒
+        System.out.println(lt.getNano());
+//        20
+//        6
+//        6
+//        0
+        /*
+         * API和LocalDate类似
+         * 特性也差不多，和时区以及时间戳无关
+         * LocalTime是可以精确到纳秒级别的
+         */
 
+        System.out.println(LocalTime.now().getNano()); // 667000000
+    }
+
+    private static void testLocalDateTime() {
+        /*
+         * 和前面几个类差不多，形式: yyyy-MM-ddThh:mm:ss.xxx
+         */
+        LocalDateTime ldt = LocalDateTime.now();
+        System.out.println(ldt); // 2019-01-03T16:39:31.875
+        System.out.println(ldt.getNano()); // 875000000
+
+        // 时间域 ChronoField，是TemporalField的一个实现类
+        System.out.println(ldt.get(ChronoField.MONTH_OF_YEAR)); // 1
     }
 }
