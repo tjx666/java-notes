@@ -20,9 +20,7 @@ public class StaticImport {
         // 现在需要获取一个1~20之间的随机整数
         int r = (int)Math.floor(Math.random() * 20 + 1.0);
 
-        // 使用静态导入的话, floor 和 random 还是比较特殊的，冲突问题不是很大
+        // 使用静态导入的话, 用起来方便多了，并且floor 和 random 还是比较特殊的，不太容易造成命名冲突问题
         r = (int)floor(random() * 20 + 1.0);
-
-
     }
 }
