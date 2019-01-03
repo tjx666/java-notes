@@ -1,4 +1,4 @@
-package AutoboxingAndUnboxing;
+package autoboxingAndUnboxing;
 
 /*
  * 自动装箱和拆箱
