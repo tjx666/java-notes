@@ -1,0 +1,75 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by Fernflower decompiler)
+//
+
+package jdk7NewFeature;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+
+public class TryWithResource {
+    public TryWithResource() {
+    }
+
+    public static void main(String[] args) {
+        try {
+            FileReader fr = new FileReader(new File(TryWithResource.class.getResource("/testFiles/input.txt").getFile()));
+            Throwable var2 = null;
+
+            try {
+                BufferedReader br = new BufferedReader(fr);
+                Throwable var4 = null;
+
+                try {
+                    String line;
+                    try {
+                        while((line = br.readLine()) != null) {
+                            System.out.println(line);
+                        }
+                    } catch (Throwable var31) {
+                        var4 = var31;
+                        throw var31;
+                    }
+                } finally {
+                    if (br != null) {
+                        if (var4 != null) {
+                            try {
+                                br.close();
+                            } catch (Throwable var30) {
+                                var4.addSuppressed(var30);
+                            }
+                        } else {
+                            br.close();
+                        }
+                    }
+
+                }
+            } catch (Throwable var33) {
+                var2 = var33;
+                throw var33;
+            } finally {
+                if (fr != null) {
+                    if (var2 != null) {
+                        try {
+                            fr.close();
+                        } catch (Throwable var29) {
+                            var2.addSuppressed(var29);
+                        }
+                    } else {
+                        fr.close();
+                    }
+                }
+
+            }
+        } catch (FileNotFoundException var35) {
+            var35.printStackTrace();
+        } catch (IOException var36) {
+            var36.printStackTrace();
+        }
+
+    }
+}
