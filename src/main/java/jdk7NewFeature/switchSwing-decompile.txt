@@ -1,0 +1,48 @@
+do {
+            System.out.println("输入你猜测的季节:");
+            Scanner scan = new Scanner(System.in);
+            String seansonYouGuess = scan.nextLine();
+            byte var6 = -1;
+            switch(seansonYouGuess.hashCode()) {
+            case 22799:
+                if (seansonYouGuess.equals("夏")) {
+                    var6 = 1;
+                }
+                break;
+            case 26149:
+                if (seansonYouGuess.equals("春")) {
+                    var6 = 0;
+                }
+                break;
+            case 31179:
+                if (seansonYouGuess.equals("秋")) {
+                    var6 = 2;
+                }
+                break;
+            case 670973:
+                if (seansonYouGuess.equals("冬天")) {
+                    var6 = 3;
+                }
+            }
+
+            switch(var6) {
+            case 0:
+                System.out.println("春风又绿江南岸");
+                break;
+            case 1:
+                System.out.println("夏虫也为我沉默");
+                break;
+            case 2:
+                System.out.println("秋雨梧桐叶落时");
+                break;
+            case 3:
+                System.out.println("冬霰秋霜春不歇");
+                break;
+            default:
+                System.out.println("输入得内容有误");
+            }
+
+            System.out.println("继续按任意键，推出输入q");
+            String input = scan.nextLine().trim();
+            loopFlag = !input.equals("q") && !input.equals("Q");
+        } while(loopFlag);
