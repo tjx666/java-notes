@@ -16,6 +16,8 @@ dependencies {
     compile group: 'com.squareup.retrofit2', name: 'converter-gson', version: '2.5.0'
     compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.8'
     compile group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
+    compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.13'
+    compile group: 'org.mybatis', name: 'mybatis', version: '3.4.6'
 
     implementation 'com.google.code.gson:gson:2.8.5'
     implementation 'com.squareup.retrofit2:retrofit:2.5.0'

@@ -47,4 +47,7 @@
     <root level="trace">
         <appender-ref ref="terminal"/>
     </root>
+
+    <logger name="org.apache.ibatis" level="DEBUG" additivity="false">
+    </logger>
 </configuration>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <properties resource="db.properties"/>
+    <typeAliases>
+        <package name="testMybatis.entity"/>
+    </typeAliases>
+
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="jdbc" />
+            <!-- 配置数据库连接信息 -->
+            <dataSource type="pooled">
+                <property name="driver" value="${db.driver}" />
+                <property name="url" value="${mysql.test.url}" />
+                <property name="username" value="${mysql.test.username}" />
+                <property name="password" value="${mysql.test.password}" />
+            </dataSource>
+        </environment>
+
+        <environment id="production">
+            <transactionManager type="jdbc"/>
+            <dataSource type="pooled">
+                <property name="driver" value="${db.driver}" />
+                <property name="url" value="${mysql.production.url}" />
+                <property name="username" value="${mysql.production.username}" />
+                <property name="password" value="${mysql.production.password}" />
+            </dataSource>
+        </environment>
+    </environments>
+
+    <mappers>
+        <!--<mapper resource="mapper-xmls/UserMapper-interface.xml"/>-->
+        <mapper class="testMybatis.dao.UserDao"/>
+    </mappers>
+
+</configuration>
